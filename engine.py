@@ -7,10 +7,17 @@ class DebateEngine:
 
         self.history = []
 
-        # first message
+ 
         first = self.agents[0].respond(
             topic,
-            "Start the debate naturally. Do NOT introduce yourself repeatedly."
+            f"""
+Start the debate on: {topic}
+
+Rules:
+- Speak briefly (max 2 short paragraphs)
+- Do NOT introduce yourself
+- Make a clear opening argument
+"""
         )
 
         self.history.append(first)
@@ -21,13 +28,17 @@ class DebateEngine:
                 last_message = self.history[-1]
 
                 context = f"""
-Topic: {topic}
+TOPIC: {topic}
 
-Last message:
+LAST MESSAGE:
 {last_message}
 
-Recent conversation:
-{chr(10).join(self.history[-5:])}
+RULES:
+- Respond ONLY to the last message
+- Do NOT repeat previous arguments
+- Keep response under 120 words
+- Push the debate forward
+- Be direct and concise
 """
 
                 reply = agent.respond(topic, context)
