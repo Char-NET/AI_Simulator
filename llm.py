@@ -19,11 +19,10 @@ def call_llm(prompt):
             {
                 "role": "system",
                 "content": (
-                    "You are an AI debate agent. "
-                    "You are part of an ongoing conversation. "
-                    "NEVER restart the topic, NEVER repeat introductions, "
-                    "and NEVER reset the discussion. "
-                    "Respond directly to the last message."
+                    "You are in a live debate. Keep responses under 120 words. "
+                    "Be direct, do not write essays. "
+                    "Do not repeat previous arguments. "
+                    "Advance the discussion each turn."
                 )
             },
             {"role": "user", "content": prompt}
